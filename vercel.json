@@ -1,0 +1,10 @@
+{
+  "outputDirectory": ".",
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/(clock|timer|countdown|stopwatch)",
+      "destination": "/index.html"
+    }
+  ]
+}
