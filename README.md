@@ -2,6 +2,7 @@
 
 <div align="center">
 
+[![Live Demo](./assets/badges/vercel.svg)](https://timer-utility.vercel.app/)
 [![License](./assets/badges/license.svg)](./LICENSE)
 [![Dependencies](./assets/badges/dependencies.svg)](https://github.com/snishad0198/timer)
 [![Audio](./assets/badges/audio.svg)](https://github.com/snishad0198/timer)
@@ -12,6 +13,8 @@
   <b>A distraction-free, ultra-precise 3D mechanical flip clock, countdown timer with selectable alarm tones, and millisecond stopwatch.</b>
   <br />
   <i>Engineered with zero third-party framework dependencies, custom Web Audio synthesis, and an unbreakable mobile screen wake-lock engine.</i>
+  <br /><br />
+  🚀 <b>Live Deployment:</b> <a href="https://timer-utility.vercel.app/">https://timer-utility.vercel.app/</a>
 </p>
 
 </div>
