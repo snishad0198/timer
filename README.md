@@ -2,11 +2,11 @@
 
 <div align="center">
 
-![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)
-![Zero Dependencies](https://img.shields.io/badge/dependencies-0%20(Pure%20Vanilla)-success?style=for-the-badge)
-![Web Audio API](https://img.shields.io/badge/Audio-Synthesized%20Web%20Audio-violet?style=for-the-badge)
-![Wake Lock API](https://img.shields.io/badge/Mobile-Always--On%20Display-orange?style=for-the-badge)
-![Platform](https://img.shields.io/badge/platform-Mobile%20%7C%20Tablet%20%7C%20Desktop-informational?style=for-the-badge)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](./LICENSE)
+[![Dependencies](https://img.shields.io/badge/Dependencies-Zero_Vanilla_JS-2ea44f.svg?style=for-the-badge)](https://github.com/snishad0198/timer)
+[![Audio](https://img.shields.io/badge/Audio-Web_Audio_API-8a2be2.svg?style=for-the-badge)](https://github.com/snishad0198/timer)
+[![Screen](https://img.shields.io/badge/Screen-Always_On_Display-ff9800.svg?style=for-the-badge)](https://github.com/snishad0198/timer)
+[![Platform](https://img.shields.io/badge/Platform-Mobile_%26_Desktop-007acc.svg?style=for-the-badge)](https://github.com/snishad0198/timer)
 
 <p align="center">
   <b>A distraction-free, ultra-precise 3D mechanical flip clock, countdown timer with selectable alarm tones, and millisecond stopwatch.</b>
@@ -143,9 +143,9 @@ timer/
 **Shiva Nishad (SNishad)**  
 *Web Developer & Full-Stack Engineer*
 
-[![GitHub](https://img.shields.io/badge/GitHub-snishad0198-181717?style=for-the-badge&logo=github)](https://github.com/snishad0198)
-[![Instagram](https://img.shields.io/badge/Instagram-snishad.me__-E4405F?style=for-the-badge&logo=instagram)](https://www.instagram.com/snishad.me_/)
-[![Email](https://img.shields.io/badge/Email-snishad01985%40gmail.com-D14836?style=for-the-badge&logo=gmail)](mailto:snishad01985@gmail.com)
+[![GitHub](https://img.shields.io/badge/GitHub-snishad0198-181717.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/snishad0198)
+[![Instagram](https://img.shields.io/badge/Instagram-snishad.me-E4405F.svg?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/snishad.me_/)
+[![Email](https://img.shields.io/badge/Email-snishad01985@gmail.com-EA4335.svg?style=for-the-badge&logo=gmail&logoColor=white)](mailto:snishad01985@gmail.com)
 
 *Available for custom web applications, front-end architecture, and high-performance UI engineering.*
 
