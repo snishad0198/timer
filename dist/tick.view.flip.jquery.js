@@ -1,8 +1,8 @@
 /* eslint-disable */
 
 /*
- * @pqina/flip v1.8.4 - A Beautifully Animated Flip Clock
- * Copyright (c) 2024 PQINA - https://pqina.nl/flip/
+ * snishad/time-utility v1.8.4 - A Beautifully Animated Flip Clock
+ * Copyright (c) 2026 SNishad - https://github.com/snishad0198
  */
 (function($) {
 	'use strict';

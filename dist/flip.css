@@ -1,6 +1,11 @@
 /*
- * @pqina/tick v1.8.3 - Counters Made Easy
- * Copyright (c) 2024 PQINA - https://github.com/pqina/tick/
+ * time-utility v1.0.0 - Time Utility - Live Clock, Countdown Timer & Stopwatch with mechanical flip animations
+ * Copyright (c) 2026 SNishad - https://github.com/snishad0198
+ */
+
+/*
+ * snishad/time-utility v1.8.3 - Counters Made Easy
+ * Copyright (c) 2026 SNishad
  */
 .tick {
   box-sizing: border-box;
@@ -190,8 +195,8 @@
       bottom: 0; }
 
 /*
- * @pqina/flip v1.8.4 - A Beautifully Animated Flip Clock
- * Copyright (c) 2024 PQINA - https://pqina.nl/flip/
+ * snishad/time-utility v1.8.4 - A Beautifully Animated Flip Clock
+ * Copyright (c) 2026 SNishad - https://github.com/snishad0198
  */
 /**
  * Layout

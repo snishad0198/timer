@@ -1,3 +1,10 @@
+/* eslint-disable */
+
+/*
+ * time-utility v1.0.0 - Time Utility - Live Clock, Countdown Timer & Stopwatch with mechanical flip animations
+ * Copyright (c) 2026 SNishad - https://github.com/snishad0198
+ */
+
 (function() {
 	'use strict';
 
@@ -239,8 +246,8 @@ if (!Object.keys) {
 /* eslint-disable */
 
 /*
- * @pqina/flip v1.8.4 - A Beautifully Animated Flip Clock
- * Copyright (c) 2024 PQINA - https://pqina.nl/flip/
+ * snishad/time-utility v1.8.4 - A Beautifully Animated Flip Clock
+ * Copyright (c) 2026 SNishad - https://github.com/snishad0198
  */
 (function(root, undefined) {
 	'use strict';
@@ -743,8 +750,8 @@ module.exports = index;
 /* eslint-disable */
 
 /*
- * @pqina/tick v1.8.3 - Counters Made Easy
- * Copyright (c) 2024 PQINA - https://github.com/pqina/tick/
+ * snishad/time-utility v1.8.3 - Counters Made Easy
+ * Copyright (c) 2026 SNishad
  */
 (function(root, plugins, undefined) {
 	'use strict';
@@ -3823,8 +3830,8 @@ var Tick = function () {
                 willDestroy: function willDestroy(tick) {},
                 didDestroy: function didDestroy(tick) {},
                 credits: {
-                    label: 'Powered by PQINA',
-                    url: 'https://pqina.nl/?ref=credits'
+                    label: 'Made By SNishad',
+                    url: 'https://www.instagram.com/snishad.me_/'
                 }
             };
         }

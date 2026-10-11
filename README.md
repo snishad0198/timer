@@ -1,113 +1,158 @@
-# Flip Countdown
+# ⏱️ Time Utility — Mechanical Flip Clock, Timer & Stopwatch
 
-Flip is an advanced and beautiful flip counter plugin. Easy to use and highly flexible, you can set up a custom counter on your website in minutes. Display visitor counts, countdown to a special date or celebrate progress. Whatever you’re planning, the options are endless.
+<div align="center">
 
-![](./flip.gif)
+![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)
+![Zero Dependencies](https://img.shields.io/badge/dependencies-0%20(Pure%20Vanilla)-success?style=for-the-badge)
+![Web Audio API](https://img.shields.io/badge/Audio-Synthesized%20Web%20Audio-violet?style=for-the-badge)
+![Wake Lock API](https://img.shields.io/badge/Mobile-Always--On%20Display-orange?style=for-the-badge)
+![Platform](https://img.shields.io/badge/platform-Mobile%20%7C%20Tablet%20%7C%20Desktop-informational?style=for-the-badge)
 
-[Learn more about Flip](https://pqina.nl/flip/) / [Learn more about Tick the engine that powers Flip](https://github.com/pqina/tick/)
+<p align="center">
+  <b>A distraction-free, ultra-precise 3D mechanical flip clock, countdown timer with selectable alarm tones, and millisecond stopwatch.</b>
+  <br />
+  <i>Engineered with zero third-party framework dependencies, custom Web Audio synthesis, and an unbreakable mobile screen wake-lock engine.</i>
+</p>
 
----
-
-[<img src="https://github.com/pqina/flip/blob/master/header.svg" alt=""/>](https://www.buymeacoffee.com/rikschennink/)
-
-[Buy me a Coffee](https://www.buymeacoffee.com/rikschennink/) / [Dev updates on Twitter](https://twitter.com/rikschennink/)
-
----
-
-
-## Quick Start
-
-If you just want to get on your way, copy the `example` directory and use it as a starting point.
-
-This example will automatically initialize Flip counters on the website and can be used with the [presets on the demo site](https://pqina.nl/flip/#presets).
-
-Or you can use one of the javascript framework codesandboxes below:
-- [React](https://codesandbox.io/s/react-flip-demo-txoux)
-- [Vue](https://codesandbox.io/s/vue-flip-demo-xhtfk)
-
-## Setup
-
-For the code snippets below we'll assume it's the `flip.min.css` and `flip.min.js` version and the folder we are uploading to is named `flip`.
-
-Copy the following HTML snippet in the `<head>` of your web page.
-
-```html
-<link href="/flip/flip.min.css" rel="stylesheet">
-```
-
-Then copy the following snippet and place it just before the closing `</body>` tag.
-
-```html
-<script src="/flip/flip.min.js"></script>
-```
-
-Make sure the paths in the above code snippets match the location of the CSS and JS files.
-
-You can now copy past the [presets](https://pqina.nl/flip/#presets) to your website and everything should function correctly.
-
-You can also load the files from a CDN like unpkg using the links below:
-
-```html
-<link href="https://unpkg.com/@pqina/flip/dist/flip.min.css" rel="stylesheet">
-```
-
-```html
-<script src="https://unpkg.com/@pqina/flip/dist/flip.min.js"></script>
-```
-
-
-### Install from NPM
-
-```
-npm i @pqina/flip --save
-```
-
-```js
-import Tick from '@pqina/flip';
-
-console.log(Tick);
-// logs {supported: true, options: {…}, helper: {…}, data: {…}, DOM: {…}, …}
-```
-
-Module usage example project on Stackblitz: https://stackblitz.com/edit/flip-counter-module
-
-## Docs
-
-Information on how to customize Tick and use the Tick API can be found on the [product website](https://pqina.nl/tick/).
-
-
-## Accessibility
-
-For better compatibility with screenreaders, we need to hide the flip view using `aria-hidden`, this prevents the contents from being read out loud. We can then use an `aria-label` attribute to provide a formatted label instead.
-
-```html
-<div class="tick"
-     data-value="1234"
-     data-did-init="setupFlip">
-  
-    <!-- Hide visual content from screenreaders with `aria-hidden` -->
-    <div data-repeat="true" aria-hidden="true">
-        <span data-view="flip"></span>
-    </div>
-  
 </div>
 
-<script>
-function setupFlip(tick) {
+---
 
-    Tick.helper.interval(function() {
+## 🌟 Key Highlights
 
-        tick.value++;
+### 🕰️ Realistic 3D Mechanical Flip Clock
+* **Split-Flap Kinetics**: Smooth 3D perspective fold animations simulating physical mechanical split-flap boards.
+* **12H & 24H Formats**: Single-tap format toggle with live AM/PM badges and localized day/date headers.
+* **Independent Seconds Toggle**: Hide or show seconds digits individually per mode without interrupting active timers.
 
-        // Set `aria-label` attribute which screenreaders will read instead of HTML content
-        tick.root.setAttribute('aria-label', tick.value);
+### ⏳ Countdown Timer with Indefinite Alarm & 4 Selectable Tones
+* **Precision Time Tracking**: Microsecond-accurate countdown with quick preset chips (1m, 5m, 10m, 15m, 25m Pomodoro, 45m, 60m).
+* **Continuous Audio Alarm**: When the countdown completes, an alarm rings continuously until manually dismissed.
+* **4 Curated Tones (Synthesized Web Audio API)**:
+  1. 🔔 **Digital Beep**: Classic retro twin-pulse digital watch buzzer.
+  2. 🎶 **Harmonic Chime**: Ascending melodic meditation arpeggio.
+  3. 📡 **Radar Alert**: Rapid dynamic frequency sweep for urgent alerts.
+  4. 🧘 **Cosmic Bell**: Deep resonant metallic gong chime.
+* **Instant Test Preview**: Preview any tone directly from the Settings Modal.
+* **Prominent "STOP ALARM (OFF)" Banner**: Instant alert bar with pulsating glow, dismissible via touchscreen, mouse, or <kbd>Space</kbd>/<kbd>Esc</kbd>.
 
-    }, 1000);
+### ⏱️ High-Precision Lap Stopwatch
+* **Millisecond Counter**: Sub-second counter badge displaying continuous `.000` resolution.
+* **Smart Lap Splitter**: Instant lap logging with automatic fastest (<span style="color:#10b981">green</span>) and slowest (<span style="color:#ef4444">red</span>) lap highlights.
 
-}
-</script>
+### 📱 Unbreakable Mobile Keep-Awake Engine
+* **No More Screen Sleep**: Mobile displays stay permanently ON while using the timer or clock.
+* **Dual-Engine Architecture**:
+  1. **Native Screen Wake Lock API** for modern browsers on HTTPS/localhost.
+  2. **Zero-Power Looping Video Sentinel** for mobile devices connected via local Wi-Fi IP (`http://192.168.x.x`), iOS Safari, and aggressive OEM battery savers.
+* **Active Watchdog**: Self-healing background monitor automatically reclaims display lock if tab is switched or briefly interrupted.
+
+### 🔍 Clock-Only Zoom & Custom Drag Repositioning
+* **Focused Zoom**: Scale the mechanical clock cards from **50% to 200%** using dedicated header controls or pinch gestures without magnifying or distorting the navigation bar or footer.
+* **Freeform Panning**: Drag and reposition the clock anywhere across the canvas for custom desk setups and streaming overlays.
+
+### 🧘 Zen Mode & Presentation Layouts
+* **Distraction-Free Zen**: Press <kbd>H</kbd> or click Zen to fade out all UI controls, leaving only the mechanical flip clock.
+* **Curated Themes**: Obsidian Night, OLED Blackout, Slate Steel, and Retro Amber with full custom accent tinting.
+
+---
+
+## ⌨️ Keyboard Shortcuts
+
+| Shortcut | Action |
+| :---: | :--- |
+| <kbd>Space</kbd> | Start / Pause active mode (or Stop ringing alarm) |
+| <kbd>R</kbd> | Reset Countdown / Stopwatch |
+| <kbd>L</kbd> | Record Lap split (Stopwatch mode) |
+| <kbd>S</kbd> | Toggle Seconds visibility (current mode) |
+| <kbd>1</kbd> / <kbd>2</kbd> / <kbd>3</kbd> | Switch to Live Clock / Countdown / Stopwatch |
+| <kbd>H</kbd> | Toggle Distraction-Free Zen Mode |
+| <kbd>F</kbd> | Toggle Fullscreen |
+| <kbd>+</kbd> / <kbd>-</kbd> / <kbd>0</kbd> | Zoom Clock In / Out / Reset (100%) |
+| <kbd>?</kbd> | Open Shortcuts & Developer Information |
+| <kbd>Esc</kbd> | Close Modals / Exit Zen Mode / Stop Alarm |
+
+---
+
+## 🚀 Quick Start & Local Development
+
+This project has **zero build dependencies** and runs directly in any modern browser.
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/snishad0198/timer.git
+cd timer
 ```
 
-## License
+### 2. Start the Local Server
+```bash
+# Using Node.js dev server (handles SPA deep links & byte-range streaming)
+npm run dev
+# or
+node dev-server.js
+```
 
-MIT License, Enjoy!
+### 3. Open in Browser
+Visit `http://localhost:3000/` or access it across your local network using your machine's IP (e.g., `http://192.168.1.X:3000/`).
+
+### 4. Build Production Distribution (Optional)
+```bash
+npm run build
+```
+
+---
+
+## 📁 Project Architecture
+
+```
+timer/
+├── assets/
+│   ├── avatar.png           # Developer profile avatar
+│   ├── keepawake.mp4        # Ultra-lightweight 1-frame H.264 video sentinel
+│   └── keepawake.webm       # Ultra-lightweight 1-frame VP8 video sentinel
+├── dist/
+│   ├── flip.css             # Standalone flip mechanical component styles
+│   ├── flip.min.css         # Minified production styles
+│   ├── flip.js              # Standalone flip mechanical animation engine
+│   └── flip.min.js          # Production minified bundle
+├── index.html               # Main SPA web application (Responsive UI & Engine)
+├── dev-server.js            # Zero-dependency HTTP & SPA router with Byte-Range streaming
+├── build.js                 # Standalone asset compiler & bundle builder
+├── package.json             # Project metadata & npm scripts
+└── README.md                # Project documentation
+```
+
+---
+
+## 🌐 Browser & Device Support
+
+| Platform | Supported Browsers | Wake-Lock Support |
+| :--- | :--- | :---: |
+| **Android** | Chrome, Edge, Samsung Internet, Firefox, Opera | ✅ Dual Engine |
+| **iOS / iPadOS** | Safari, Chrome, Firefox, WebKit PWAs | ✅ Dual Engine |
+| **macOS** | Safari, Chrome, Edge, Firefox, Brave | ✅ Native / Video |
+| **Windows** | Chrome, Edge, Firefox, Brave, Opera | ✅ Native / Video |
+| **Linux** | Chromium, Firefox | ✅ Native / Video |
+
+---
+
+## 👨‍💻 Developer & Author
+
+<div align="center">
+
+**Shiva Nishad (SNishad)**  
+*Web Developer & Full-Stack Engineer*
+
+[![GitHub](https://img.shields.io/badge/GitHub-snishad0198-181717?style=for-the-badge&logo=github)](https://github.com/snishad0198)
+[![Instagram](https://img.shields.io/badge/Instagram-snishad.me__-E4405F?style=for-the-badge&logo=instagram)](https://www.instagram.com/snishad.me_/)
+[![Email](https://img.shields.io/badge/Email-snishad01985%40gmail.com-D14836?style=for-the-badge&logo=gmail)](mailto:snishad01985@gmail.com)
+
+*Available for custom web applications, front-end architecture, and high-performance UI engineering.*
+
+</div>
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](./LICENSE) — open-source and free for commercial and personal use.

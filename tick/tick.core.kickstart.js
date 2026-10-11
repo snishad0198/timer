@@ -1,8 +1,8 @@
 /* eslint-disable */
 
 /*
- * @pqina/tick v1.8.3 - Counters Made Easy
- * Copyright (c) 2024 PQINA - https://github.com/pqina/tick/
+ * snishad/time-utility v1.8.3 - Counters Made Easy
+ * Copyright (c) 2026 SNishad
  */
 (function(root, plugins, undefined) {
 	'use strict';
@@ -3081,8 +3081,8 @@ var Tick = function () {
                 willDestroy: function willDestroy(tick) {},
                 didDestroy: function didDestroy(tick) {},
                 credits: {
-                    label: 'Powered by PQINA',
-                    url: 'https://pqina.nl/?ref=credits'
+                    label: 'Made By SNishad',
+                    url: 'https://www.instagram.com/snishad.me_/'
                 }
             };
         }
