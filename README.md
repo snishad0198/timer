@@ -2,11 +2,11 @@
 
 <div align="center">
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](./LICENSE)
-[![Dependencies](https://img.shields.io/badge/Dependencies-Zero_Vanilla_JS-2ea44f.svg?style=for-the-badge)](https://github.com/snishad0198/timer)
-[![Audio](https://img.shields.io/badge/Audio-Web_Audio_API-8a2be2.svg?style=for-the-badge)](https://github.com/snishad0198/timer)
-[![Screen](https://img.shields.io/badge/Screen-Always_On_Display-ff9800.svg?style=for-the-badge)](https://github.com/snishad0198/timer)
-[![Platform](https://img.shields.io/badge/Platform-Mobile_%26_Desktop-007acc.svg?style=for-the-badge)](https://github.com/snishad0198/timer)
+[![License](./assets/badges/license.svg)](./LICENSE)
+[![Dependencies](./assets/badges/dependencies.svg)](https://github.com/snishad0198/timer)
+[![Audio](./assets/badges/audio.svg)](https://github.com/snishad0198/timer)
+[![Screen](./assets/badges/screen.svg)](https://github.com/snishad0198/timer)
+[![Platform](./assets/badges/platform.svg)](https://github.com/snishad0198/timer)
 
 <p align="center">
   <b>A distraction-free, ultra-precise 3D mechanical flip clock, countdown timer with selectable alarm tones, and millisecond stopwatch.</b>
@@ -143,9 +143,9 @@ timer/
 **Shiva Nishad (SNishad)**  
 *Web Developer & Full-Stack Engineer*
 
-[![GitHub](https://img.shields.io/badge/GitHub-snishad0198-181717.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/snishad0198)
-[![Instagram](https://img.shields.io/badge/Instagram-snishad.me-E4405F.svg?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/snishad.me_/)
-[![Email](https://img.shields.io/badge/Email-snishad01985@gmail.com-EA4335.svg?style=for-the-badge&logo=gmail&logoColor=white)](mailto:snishad01985@gmail.com)
+[![GitHub](./assets/badges/github.svg)](https://github.com/snishad0198)
+[![Instagram](./assets/badges/instagram.svg)](https://www.instagram.com/snishad.me_/)
+[![Email](./assets/badges/email.svg)](mailto:snishad01985@gmail.com)
 
 *Available for custom web applications, front-end architecture, and high-performance UI engineering.*
 
