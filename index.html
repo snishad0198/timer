@@ -432,51 +432,20 @@
       border: 0 !important;
     }
 
-    /* Mobile-Only Landscape Toggle Button */
-    .mobile-landscape-btn {
-      display: none;
+    /* Mobile-Only Landscape Icon Button in Bottom Bar */
+    .mobile-landscape-icon-btn {
+      display: none !important;
     }
 
     @media (max-width: 680px) {
-      .mobile-landscape-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
-        position: fixed;
-        top: 0.75rem;
-        right: 0.75rem;
-        height: 36px;
-        padding: 0 13px;
-        border-radius: 9999px;
-        background: rgba(24, 24, 27, 0.9);
-        border: 1px solid var(--color-border);
-        color: var(--color-foreground);
-        font-family: inherit;
-        font-size: 0.75rem;
-        font-weight: 600;
-        letter-spacing: 0.02em;
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
-        z-index: 60;
-        cursor: pointer;
-        touch-action: manipulation;
-        transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      .mobile-landscape-icon-btn {
+        display: inline-flex !important;
       }
-      .mobile-landscape-btn:active {
-        transform: scale(0.93);
-        background: var(--color-surface-active);
-      }
-      .mobile-landscape-btn.active {
-        color: #ffffff;
-        border-color: var(--color-accent);
-        background: rgba(59, 130, 246, 0.25);
-        box-shadow: 0 0 14px rgba(59, 130, 246, 0.35);
-      }
-      body.zen-mode .mobile-landscape-btn {
-        opacity: 0;
-        pointer-events: none;
+      .mobile-landscape-icon-btn.active {
+        color: var(--color-accent) !important;
+        border-color: var(--color-accent) !important;
+        background: rgba(59, 130, 246, 0.2) !important;
+        box-shadow: 0 0 10px rgba(59, 130, 246, 0.35) !important;
       }
     }
 
@@ -595,12 +564,11 @@
       display: none !important;
     }
 
-    body.css-landscape .mobile-landscape-btn {
-      top: 0.5rem !important;
-      right: 0.5rem !important;
-      height: 32px !important;
-      font-size: 0.7rem !important;
-      padding: 0 10px !important;
+    body.css-landscape .mobile-landscape-icon-btn {
+      display: inline-flex !important;
+      color: var(--color-accent) !important;
+      border-color: var(--color-accent) !important;
+      background: rgba(59, 130, 246, 0.2) !important;
     }
 
     /* Continuous Countdown Alarm Alert Banner */
@@ -1946,19 +1914,6 @@
 </head>
 <body>
 
-  <!-- Mobile Landscape Mode Toggle Button (Mobile Only) -->
-  <button id="btn-mobile-landscape" class="mobile-landscape-btn" title="Landscape Mode" aria-label="Toggle Landscape Mode">
-    <svg id="icon-landscape-orient" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <rect width="18" height="12" x="3" y="6" rx="2"></rect>
-      <circle cx="18" cy="12" r="0.75" fill="currentColor"></circle>
-    </svg>
-    <svg id="icon-portrait-orient" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
-      <rect width="12" height="18" x="6" y="3" rx="2"></rect>
-      <circle cx="12" cy="18" r="0.75" fill="currentColor"></circle>
-    </svg>
-    <span id="mobile-landscape-text">Landscape</span>
-  </button>
-
   <!-- Top Navigation -->
   <header class="top-bar">
     <h1 class="sr-only">Online Mechanical Flip Clock, Countdown Timer &amp; Stopwatch</h1>
@@ -2174,6 +2129,16 @@
       </div>
 
       <div class="util-cluster">
+        <button id="btn-mobile-landscape" class="icon-btn mobile-landscape-icon-btn" title="Toggle Landscape Mode" aria-label="Toggle Landscape Mode">
+          <svg id="icon-landscape-orient" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="18" height="12" x="3" y="6" rx="2"></rect>
+            <circle cx="18" cy="12" r="0.75" fill="currentColor"></circle>
+          </svg>
+          <svg id="icon-portrait-orient" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+            <rect width="12" height="18" x="6" y="3" rx="2"></rect>
+            <circle cx="12" cy="18" r="0.75" fill="currentColor"></circle>
+          </svg>
+        </button>
         <button id="btn-zen" class="icon-btn" title="Hide UI / Only Clock (H)" aria-label="Hide Controls and Show Only Clock">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
         </button>
