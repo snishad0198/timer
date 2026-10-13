@@ -3,8 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Time Utility</title>
-  <meta name="description" content="Time Utility - Live Clock, Countdown Timer & Stopwatch with realistic mechanical flip animations. Made by SNishad.">
+  <title>Online Flip Clock, Countdown Timer & Stopwatch | Time Utility</title>
+  <meta name="description" content="Free, aesthetic 3D mechanical flip clock, countdown timer with selectable alarm tones, and precision stopwatch. Keeps mobile screens awake permanently.">
+  <link rel="canonical" href="https://timer-utility.vercel.app/">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="keywords" content="flip clock, online timer, countdown timer, online stopwatch, mechanical clock, aesthetic clock, full screen clock, pomodoro timer, time utility">
+  <meta name="author" content="Shiva Nishad">
+  <meta name="theme-color" content="#09090b">
+  <meta name="application-name" content="Time Utility">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Time Utility">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:url" content="https://timer-utility.vercel.app/">
+  <meta property="og:site_name" content="Time Utility">
+  <meta property="og:title" content="Online Flip Clock, Countdown Timer & Stopwatch | Time Utility">
+  <meta property="og:description" content="Free 3D mechanical flip clock, countdown timer with alarm tones, and high-precision stopwatch. Mobile screen stay-awake enabled.">
+  <meta property="og:image" content="https://timer-utility.vercel.app/assets/profile.jpg">
+  <meta property="og:image:alt" content="Time Utility - Mechanical Flip Clock & Timer">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://timer-utility.vercel.app/">
+  <meta name="twitter:title" content="Online Flip Clock, Countdown Timer & Stopwatch">
+  <meta name="twitter:description" content="Free aesthetic mechanical flip clock, customizable timer with alarm tones, and millisecond lap stopwatch.">
+  <meta name="twitter:image" content="https://timer-utility.vercel.app/assets/profile.jpg">
+  <meta name="twitter:creator" content="@snishad">
+
+  <!-- Schema.org WebApplication JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Time Utility",
+    "url": "https://timer-utility.vercel.app/",
+    "description": "Free, aesthetic 3D mechanical flip clock, countdown timer with selectable alarm tones, and precision stopwatch. Designed with zero dependencies and screen wake lock.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "author": {
+      "@type": "Person",
+      "name": "Shiva Nishad",
+      "url": "https://github.com/snishad0198"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "3D mechanical split-flap animations",
+      "12-Hour and 24-Hour live clock",
+      "Countdown timer with 4 continuous audio alarms",
+      "Sub-second stopwatch with lap split records",
+      "Screen wake lock display retention on mobile",
+      "Clock zoom and freeform drag repositioning",
+      "Landscape rotation mode for mobile"
+    ]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -356,6 +417,92 @@
       15% { opacity: 1; transform: translate(-50%, 0); }
       75% { opacity: 1; transform: translate(-50%, 0); }
       100% { opacity: 0; transform: translate(-50%, -4px); }
+    }
+
+    /* Screen reader only utility for SEO semantic H1 */
+    .sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    /* Mobile Quick Floating Rotate Button */
+    .mobile-float-rotate-btn {
+      display: none;
+    }
+
+    @media (max-width: 680px) {
+      .mobile-float-rotate-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0.85rem;
+        right: 0.85rem;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: rgba(24, 24, 27, 0.85);
+        border: 1px solid var(--color-border);
+        color: var(--color-foreground);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+        z-index: 60;
+        cursor: pointer;
+        touch-action: manipulation;
+        transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      }
+      .mobile-float-rotate-btn:active {
+        transform: scale(0.92);
+        background: var(--color-surface-active);
+      }
+      .mobile-float-rotate-btn.active {
+        color: var(--color-accent);
+        border-color: var(--color-accent);
+        background: rgba(59, 130, 246, 0.15);
+      }
+      body.zen-mode .mobile-float-rotate-btn {
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+
+    /* Simulated Landscape 90-degree Rotation */
+    body.css-landscape {
+      width: 100vh !important;
+      height: 100vw !important;
+      transform: rotate(90deg) !important;
+      transform-origin: center center !important;
+      position: fixed !important;
+      top: calc((100vh - 100vw) / 2) !important;
+      left: calc((100vw - 100vh) / 2) !important;
+      overflow: hidden !important;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    body.css-landscape .top-bar {
+      padding: 0.25rem 1rem !important;
+    }
+
+    body.css-landscape .main-stage {
+      padding: 0.25rem 0.5rem !important;
+    }
+
+    body.css-landscape .bottom-section {
+      padding: 0.25rem 1rem 0.5rem !important;
+    }
+
+    #btn-rotate.active {
+      color: var(--color-accent);
+      background: var(--color-surface-active);
+      border-color: var(--color-accent);
     }
 
     /* Continuous Countdown Alarm Alert Banner */
@@ -1701,8 +1848,16 @@
 </head>
 <body>
 
+  <!-- Floating Rotate Button for Mobile (Quick orientation toggle) -->
+  <button id="btn-mobile-rotate" class="mobile-float-rotate-btn" title="Rotate Screen (Landscape / Portrait)" aria-label="Rotate Orientation">
+    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+    </svg>
+  </button>
+
   <!-- Top Navigation -->
   <header class="top-bar">
+    <h1 class="sr-only">Online Mechanical Flip Clock, Countdown Timer &amp; Stopwatch</h1>
     <nav class="mode-nav" aria-label="Timer Modes">
       <button id="mode-clock-btn" class="mode-btn active" data-mode="clock" aria-label="Live Clock Mode">
         <span>Clock</span>
@@ -1915,6 +2070,9 @@
       </div>
 
       <div class="util-cluster">
+        <button id="btn-rotate" class="icon-btn" title="Rotate Screen / Orientation (Shift+O)" aria-label="Rotate Orientation">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+        </button>
         <button id="btn-zen" class="icon-btn" title="Hide UI / Only Clock (H)" aria-label="Hide Controls and Show Only Clock">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
         </button>
@@ -2284,6 +2442,10 @@
     <div class="shortcut-item">
       <span>Toggle Layout (Stacked / Wide)</span>
       <span class="kbd-shortcut">O</span>
+    </div>
+    <div class="shortcut-item">
+      <span>Rotate Screen (Landscape / Portrait)</span>
+      <span class="kbd-shortcut">Shift+O</span>
     </div>
     <div class="shortcut-item">
       <span>Toggle 12H / 24H Format</span>
@@ -3825,6 +3987,56 @@
       btnFullscreen.addEventListener('click', toggleFullscreen);
 
       // ----------------------------------------------------
+      // Screen Orientation Rotation Toggle (Mobile & Desktop)
+      // ----------------------------------------------------
+      const btnRotate = document.getElementById('btn-rotate');
+      const btnMobileRotate = document.getElementById('btn-mobile-rotate');
+      let isSimulatedLandscape = false;
+
+      async function toggleRotate() {
+        // 1. Try native Screen Orientation API first if supported
+        try {
+          if (screen.orientation && screen.orientation.lock) {
+            const currentType = screen.orientation.type || '';
+            if (currentType.includes('portrait')) {
+              await screen.orientation.lock('landscape');
+            } else if (currentType.includes('landscape')) {
+              await screen.orientation.unlock();
+            }
+          }
+        } catch (err) {
+          // Native lock not permitted on mobile browser without fullscreen
+        }
+
+        // 2. Toggle simulated CSS 90-deg landscape mode (works 100% reliably everywhere)
+        isSimulatedLandscape = !isSimulatedLandscape;
+        document.body.classList.toggle('css-landscape', isSimulatedLandscape);
+        if (btnRotate) btnRotate.classList.toggle('active', isSimulatedLandscape);
+        if (btnMobileRotate) btnMobileRotate.classList.toggle('active', isSimulatedLandscape);
+
+        // Feedback toast
+        const toast = document.getElementById('zoom-toast');
+        if (toast) {
+          toast.textContent = isSimulatedLandscape ? 'Landscape Mode' : 'Portrait Mode';
+          toast.classList.add('visible');
+          setTimeout(() => toast.classList.remove('visible'), 1200);
+        }
+      }
+
+      if (btnRotate) btnRotate.addEventListener('click', toggleRotate);
+      if (btnMobileRotate) btnMobileRotate.addEventListener('click', toggleRotate);
+
+      // Auto-reset simulated rotation if user physically rotates device to natural landscape
+      window.addEventListener('orientationchange', () => {
+        if (window.innerWidth > window.innerHeight && isSimulatedLandscape) {
+          isSimulatedLandscape = false;
+          document.body.classList.remove('css-landscape');
+          if (btnRotate) btnRotate.classList.remove('active');
+          if (btnMobileRotate) btnMobileRotate.classList.remove('active');
+        }
+      });
+
+      // ----------------------------------------------------
       // Settings Popover Modal & Customization
       // ----------------------------------------------------
       const settingsBackdrop = document.getElementById('settings-backdrop');
@@ -4303,9 +4515,13 @@
             toggleFullscreen();
             break;
           case 'o':
-          case 'O': // Toggle layout (Stacked / Wide)
+          case 'O': // Toggle layout (Stacked / Wide) or Rotate Screen with Shift
             e.preventDefault();
-            toggleClockLayout();
+            if (e.shiftKey) {
+              toggleRotate();
+            } else {
+              toggleClockLayout();
+            }
             break;
           case 't':
           case 'T': // Toggle 12H / 24H (Clock mode)

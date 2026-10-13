@@ -2,9 +2,10 @@
   "outputDirectory": ".",
   "cleanUrls": true,
   "rewrites": [
-    {
-      "source": "/(clock|timer|countdown|stopwatch)",
-      "destination": "/index.html"
-    }
+    { "source": "/clock", "destination": "/index.html" },
+    { "source": "/timer", "destination": "/index.html" },
+    { "source": "/countdown", "destination": "/index.html" },
+    { "source": "/stopwatch", "destination": "/index.html" },
+    { "source": "/:match*", "destination": "/index.html" }
   ]
 }

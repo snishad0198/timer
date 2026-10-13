@@ -2,7 +2,7 @@
 
 /*
  * time-utility v1.0.0 - Time Utility - Live Clock, Countdown Timer & Stopwatch with mechanical flip animations
- * Copyright (c) 2026 SNishad - https://github.com/snishad0198
+ * Copyright (c) 2026 SNishad - https://timer-utility.vercel.app/
  */
 
 (function() {
