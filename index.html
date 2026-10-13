@@ -3011,111 +3011,25 @@
       const btnZen = document.getElementById('btn-zen');
 
       // ----------------------------------------------------
-      // Screen Wake Lock & Robust Keep-Awake Engine
-      // Prevents mobile (Android/iOS) and desktop screens from locking or sleeping
-      // Uses a dual-strategy: Native Screen Wake Lock API + Background Silent Video Loop
+      // Screen Wake Lock Engine (Constant Steady Brightness)
+      // Keeps mobile and desktop screens awake using the official W3C Screen Wake Lock API.
+      // Zero background video loops to prevent mobile display HDR/video brightness flickering.
       // ----------------------------------------------------
       let wakeLockSentinel = null;
-      let keepAwakeVideoEl = null;
       let wakeLockWatchdogTimer = null;
-
-      // Ultra-compact verified 1-frame silent videos (MP4 H.264 Baseline for iOS + WebM VP8 for Android)
-      const KEEP_AWAKE_MP4_URI = 'data:video/mp4;base64,AAAAIGZ0eXBpc29tAAACAGlzb21pc28yYXZjMW1wNDEAAAMrbW9vdgAAAGxtdmhkAAAAAAAAAAAAAAAAAAAD6AAAB9AAAQAAAQAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAlZ0cmFrAAAAXHRraGQAAAADAAAAAAAAAAAAAAABAAAAAAAAB9AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAABAAAAAAEAAAABAAAAAAAAkZWR0cwAAABxlbHN0AAAAAAAAAAEAAAfQAAAAAAABAAAAAAHObWRpYQAAACBtZGhkAAAAAAAAAAAAAAAAAABAAAAAgABVxAAAAAAALWhkbHIAAAAAAAAAAHZpZGUAAAAAAAAAAAAAAABWaWRlb0hhbmRsZXIAAAABeW1pbmYAAAAUdm1oZAAAAAEAAAAAAAAAAAAAACRkaW5mAAAAHGRyZWYAAAAAAAAAAQAAAAx1cmwgAAAAAQAAATlzdGJsAAAAuXN0c2QAAAAAAAAAAQAAAKlhdmMxAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAEAAQABIAAAASAAAAAAAAAABFExhdmM2My4xLjEwMiBsaWJ4MjY0AAAAAAAAAAAAAAAAGP//AAAAL2F2Y0MBQsAe/+EAF2dCwB7ZBCbARAAAAwAEAAADAAg8WLkgAQAFaMuDyyAAAAAQcGFzcAAAAAEAAAABAAAAFGJ0cnQAAAAAAAAKcAAAAAAAAAAYc3R0cwAAAAAAAAABAAAAAgAAQAAAAAAUc3RzcwAAAAAAAAABAAAAAQAAABxzdHNjAAAAAAAAAAEAAAABAAAAAgAAAAEAAAAcc3RzegAAAAAAAAAAAAAAAgAAApIAAAAKAAAAFHN0Y28AAAAAAAAAAQAAA1sAAABhdWR0YQAAAFltZXRhAAAAAAAAACFoZGxyAAAAAAAAAABtZGlyYXBwbAAAAAAAAAAAAAAAACxpbHN0AAAAJKl0b28AAAAcZGF0YQAAAAEAAAAATGF2ZjYzLjEuMTAyAAAACGZyZWUAAAKkbWRhdAAAAnAGBf//bNxF6b3m2Ui3lizYINkj7u94MjY0IC0gY29yZSAxNjUgcjMyMjMgMDQ4MGNiMCAtIEguMjY0L01QRUctNCBBVkMgY29kZWMgLSBDb3B5bGVmdCAyMDAzLTIwMjUgLSBodHRwOi8vd3d3LnZpZGVvbGFuLm9yZy94MjY0Lmh0bWwgLSBvcHRpb25zOiBjYWJhYz0wIHJlZj0zIGRlYmxvY2s9MTowOjAgYW5hbHlzZT0weDE6MHgxMTEgbWU9aGV4IHN1Ym1lPTcgcHN5PTEgcHN5X3JkPTEuMDA6MC4wMCBtaXhlZF9yZWY9MSBtZV9yYW5nZT0xNiBjaHJvbWFfbWU9MSB0cmVsbGlzPTEgOHg4ZGN0PTAgY3FtPTAgZGVhZHpvbmU9MjEsMTEgZmFzdF9wc2tpcD0xIGNocm9tYV9xcF9vZmZzZXQ9LTIgdGhyZWFkcz0yIGxvb2thaGVhZF90aHJlYWRzPTEgc2xpY2VkX3RocmVhZHM9MCBucj0wIGRlY2ltYXRlPTEgaW50ZXJsYWNlZD0wIGJsdXJheV9jb21wYXQ9MCBjb25zdHJhaW5lZF9pbnRyYT0wIGJmcmFtZXM9MCB3ZWlnaHRwPTAga2V5aW50PTI1MCBrZXlpbnRfbWluPTEgc2NlbmVjdXQ9NDAgaW50cmFfcmVmcmVzaD0wIHJjX2xvb2thaGVhZD00MCByYz1jcmYgbWJ0cmVlPTEgY3JmPTIzLjAgcWNvbXA9MC42MCBxcG1pbj0wIHFwbWF4PTY5IHFwc3RlcD00IGlwX3JhdGlvPTEuNDAgYXE9MToxLjAwAIAAAAAaZYiEBb///w9FAAFPfycnJ1111111111114AAAAAGQZo4CvhG';
-      const KEEP_AWAKE_WEBM_URI = 'data:video/webm;base64,GkXfo59ChoEBQveBAULygQRC84EIQoKEd2VibUKHgQJChYECGFOAZwEAAAAAAAIaEU2bdLpNu4tTq4QVSalmU6yBoU27i1OrhBZUrmtTrIHWTbuMU6uEElTDZ1OsggEyTbuMU6uEHFO7a1OsggIE7AEAAAAAAABZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVSalmsCrXsYMPQkBNgIxMYXZmNjMuMS4xMDJXQYxMYXZmNjMuMS4xMDJEiYhAn0AAAAAAABZUrmvXrgEAAAAAAABO14EBc8WI3tbTT9KvViGcgQAitZyDdW5kiIEAhoVWX1ZQOIOBASPjg4Q7msoA4JCwgUC6gUCagQJVsIRVuYEBVe6BAOwBAAAAAAAAAgAAElTDZ/pzc59jwIBnyJlFo4dFTkNPREVSRIeMTGF2ZjYzLjEuMTAyc3PVY8CLY8WI3tbTT9KvViFnyKBFo4dFTkNPREVSRIeTTGF2YzYzLjEuMTAyIGxpYnZweGfIoUWjiERVUkFUSU9ORIeTMDA6MDA6MDIuMDAwMDAwMDAwAB9DtnXO54EAo6qBAACA8AIAnQEqQABAAABHCIWFiJmEiAKCAAZwPEJgCrIg9zAA/v+PvACjnYED6AAxAgABEBAAGAAZ1/QMAAEsBgCmAP7/q1CAHFO7a5G7j7OBALeK94EB8YIBsfCBAw==';
-
-      function getOrCreateKeepAwakeVideo() {
-        if (!keepAwakeVideoEl) {
-          keepAwakeVideoEl = document.createElement('video');
-          keepAwakeVideoEl.setAttribute('id', 'keep-awake-video');
-          keepAwakeVideoEl.setAttribute('playsinline', 'true');
-          keepAwakeVideoEl.setAttribute('webkit-playsinline', 'true');
-          keepAwakeVideoEl.setAttribute('x5-playsinline', 'true');
-          keepAwakeVideoEl.setAttribute('muted', 'true');
-          keepAwakeVideoEl.muted = true;
-          keepAwakeVideoEl.defaultMuted = true;
-          keepAwakeVideoEl.loop = true;
-          keepAwakeVideoEl.preload = 'auto';
-          keepAwakeVideoEl.setAttribute('aria-hidden', 'true');
-          keepAwakeVideoEl.style.cssText = 'position:fixed;top:0;left:0;width:1px;height:1px;opacity:0.001;pointer-events:none;z-index:-999;';
-
-          // First try external media files, falling back to canonical data URIs
-          const srcMp4 = document.createElement('source');
-          srcMp4.src = './assets/keepawake.mp4';
-          srcMp4.type = 'video/mp4';
-
-          const srcWebm = document.createElement('source');
-          srcWebm.src = './assets/keepawake.webm';
-          srcWebm.type = 'video/webm';
-
-          const srcMp4Data = document.createElement('source');
-          srcMp4Data.src = KEEP_AWAKE_MP4_URI;
-          srcMp4Data.type = 'video/mp4';
-
-          const srcWebmData = document.createElement('source');
-          srcWebmData.src = KEEP_AWAKE_WEBM_URI;
-          srcWebmData.type = 'video/webm';
-
-          keepAwakeVideoEl.appendChild(srcMp4);
-          keepAwakeVideoEl.appendChild(srcWebm);
-          keepAwakeVideoEl.appendChild(srcMp4Data);
-          keepAwakeVideoEl.appendChild(srcWebmData);
-
-          keepAwakeVideoEl.addEventListener('ended', () => {
-            if (config.keepScreenAwake !== false) {
-              keepAwakeVideoEl.currentTime = 0;
-              keepAwakeVideoEl.play().catch(() => {});
-            }
-          });
-
-          keepAwakeVideoEl.addEventListener('pause', () => {
-            if (config.keepScreenAwake !== false && document.visibilityState === 'visible') {
-              keepAwakeVideoEl.play().catch(() => {});
-            }
-          });
-
-          document.body.appendChild(keepAwakeVideoEl);
-        }
-        return keepAwakeVideoEl;
-      }
-
-      function playKeepAwakeVideo() {
-        const vid = getOrCreateKeepAwakeVideo();
-        if (vid && vid.paused) {
-          vid.play().catch(() => {});
-        }
-      }
-
-      function pauseKeepAwakeVideo() {
-        if (keepAwakeVideoEl) {
-          try {
-            keepAwakeVideoEl.pause();
-          } catch (_) {}
-        }
-      }
 
       async function requestWakeLock() {
         if (config.keepScreenAwake === false) return;
+        if (wakeLockSentinel && !wakeLockSentinel.released) return;
 
-        // 1. Trigger the background video keepalive immediately (works over HTTP and mobile network)
-        playKeepAwakeVideo();
-
-        // 2. Request modern Screen Wake Lock API (works over HTTPS or localhost)
         if ('wakeLock' in navigator && typeof navigator.wakeLock.request === 'function') {
           try {
-            if (!wakeLockSentinel || wakeLockSentinel.released) {
-              wakeLockSentinel = await navigator.wakeLock.request('screen');
-              wakeLockSentinel.addEventListener('release', () => {
-                wakeLockSentinel = null;
-                // If released unexpectedly while screen keep awake is desired, try to recover
-                if (config.keepScreenAwake !== false && document.visibilityState === 'visible') {
-                  playKeepAwakeVideo();
-                }
-              });
-            }
+            wakeLockSentinel = await navigator.wakeLock.request('screen');
+            wakeLockSentinel.addEventListener('release', () => {
+              wakeLockSentinel = null;
+            });
           } catch (err) {
-            // Wake Lock API failed or was not allowed (e.g. insecure HTTP or battery saver);
-            // the background video playback keeps the screen awake reliably.
-            playKeepAwakeVideo();
+            wakeLockSentinel = null;
           }
         }
       }
@@ -3127,40 +3041,42 @@
           } catch (_) {}
           wakeLockSentinel = null;
         }
-        pauseKeepAwakeVideo();
       }
 
-      // Continuous Watchdog: checks every 8 seconds to ensure screen lock prevention remains actively held
+      // Ensure any legacy video element is completely removed to prevent GPU brightness jumping
+      const existingVideoEl = document.getElementById('keep-awake-video');
+      if (existingVideoEl) {
+        existingVideoEl.pause();
+        existingVideoEl.remove();
+      }
+
+      // Watchdog: gently re-acquires wake lock if released unexpectedly
       function startWakeLockWatchdog() {
         if (wakeLockWatchdogTimer) clearInterval(wakeLockWatchdogTimer);
         wakeLockWatchdogTimer = setInterval(() => {
           if (config.keepScreenAwake !== false && document.visibilityState === 'visible') {
-            if (!wakeLockSentinel && 'wakeLock' in navigator) {
+            if (!wakeLockSentinel) {
               requestWakeLock();
             }
-            if (keepAwakeVideoEl && keepAwakeVideoEl.paused) {
-              playKeepAwakeVideo();
-            }
           }
-        }, 8000);
+        }, 15000);
       }
       startWakeLockWatchdog();
 
-      // Automatically re-acquire wake lock and resume video when tab becomes visible again
+      // Automatically re-acquire wake lock when tab becomes visible again
       document.addEventListener('visibilitychange', () => {
         if (document.visibilityState === 'visible') {
           if (config.keepScreenAwake !== false) {
             requestWakeLock();
           }
         } else {
-          // Tab hidden: pause background video to preserve battery
-          pauseKeepAwakeVideo();
+          releaseWakeLock();
         }
       });
 
-      // User gesture triggers: Safari & Chrome grant Wake Lock & video playback strictly upon user interactions
+      // User gesture triggers: Acquire wake lock on interaction if not yet held
       const triggerWakeLockInteraction = () => {
-        if (config.keepScreenAwake !== false) {
+        if (config.keepScreenAwake !== false && !wakeLockSentinel) {
           requestWakeLock();
         }
       };
