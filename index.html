@@ -432,49 +432,55 @@
       border: 0 !important;
     }
 
-    /* Mobile Quick Floating Rotate Button */
-    .mobile-float-rotate-btn {
+    /* Mobile-Only Landscape Toggle Button */
+    .mobile-landscape-btn {
       display: none;
     }
 
     @media (max-width: 680px) {
-      .mobile-float-rotate-btn {
-        display: flex;
+      .mobile-landscape-btn {
+        display: inline-flex;
         align-items: center;
         justify-content: center;
+        gap: 6px;
         position: fixed;
-        top: 0.85rem;
-        right: 0.85rem;
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        background: rgba(24, 24, 27, 0.85);
+        top: 0.75rem;
+        right: 0.75rem;
+        height: 36px;
+        padding: 0 13px;
+        border-radius: 9999px;
+        background: rgba(24, 24, 27, 0.9);
         border: 1px solid var(--color-border);
         color: var(--color-foreground);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
+        font-family: inherit;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
         z-index: 60;
         cursor: pointer;
         touch-action: manipulation;
         transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
       }
-      .mobile-float-rotate-btn:active {
-        transform: scale(0.92);
+      .mobile-landscape-btn:active {
+        transform: scale(0.93);
         background: var(--color-surface-active);
       }
-      .mobile-float-rotate-btn.active {
-        color: var(--color-accent);
+      .mobile-landscape-btn.active {
+        color: #ffffff;
         border-color: var(--color-accent);
-        background: rgba(59, 130, 246, 0.15);
+        background: rgba(59, 130, 246, 0.25);
+        box-shadow: 0 0 14px rgba(59, 130, 246, 0.35);
       }
-      body.zen-mode .mobile-float-rotate-btn {
+      body.zen-mode .mobile-landscape-btn {
         opacity: 0;
         pointer-events: none;
       }
     }
 
-    /* Simulated Landscape 90-degree Rotation */
+    /* Simulated Landscape 90-degree Mode: Full UI remains perfectly visible */
     body.css-landscape {
       width: 100vh !important;
       height: 100vw !important;
@@ -484,25 +490,117 @@
       top: calc((100vh - 100vw) / 2) !important;
       left: calc((100vw - 100vh) / 2) !important;
       overflow: hidden !important;
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      padding: 0.35rem 0.75rem !important;
+      box-sizing: border-box !important;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      --digit-size: clamp(2.2rem, 9.5vh, 3.8rem) !important;
     }
 
+    /* Force wide horizontal clock layout in landscape mode */
+    body.css-landscape #main-tick > [data-layout] {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 0.15em !important;
+      white-space: nowrap !important;
+    }
+
+    body.css-landscape #main-tick .tick-text-separator {
+      display: inline-block !important;
+    }
+
+    body.css-landscape #main-tick .tick-group {
+      display: inline-flex !important;
+      flex-direction: row !important;
+    }
+
+    /* Top Navigation in Landscape */
     body.css-landscape .top-bar {
-      padding: 0.25rem 1rem !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      width: 100% !important;
+      max-width: 440px !important;
+      padding: 0.15rem 0 !important;
+      margin: 0 !important;
+      flex-shrink: 0 !important;
+      z-index: 20 !important;
     }
 
+    body.css-landscape .mode-nav {
+      padding: 2px !important;
+    }
+
+    body.css-landscape .mode-btn {
+      min-height: 32px !important;
+      padding: 0.25rem 0.75rem !important;
+      font-size: 0.72rem !important;
+    }
+
+    /* Main Clock Stage in Landscape */
     body.css-landscape .main-stage {
-      padding: 0.25rem 0.5rem !important;
+      flex: 1 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      align-items: center !important;
+      padding: 0.2rem 0 !important;
+      min-height: 0 !important;
+      width: 100% !important;
     }
 
+    /* Bottom Section in Landscape: Controls remain fully accessible */
     body.css-landscape .bottom-section {
-      padding: 0.25rem 1rem 0.5rem !important;
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: center !important;
+      align-items: center !important;
+      width: 100% !important;
+      max-width: 620px !important;
+      padding: 0.2rem 0.5rem !important;
+      margin: 0 !important;
+      gap: 0.5rem !important;
+      flex-shrink: 0 !important;
+      z-index: 20 !important;
     }
 
-    #btn-rotate.active {
-      color: var(--color-accent);
-      background: var(--color-surface-active);
-      border-color: var(--color-accent);
+    body.css-landscape .controls-pill {
+      padding: 0.25rem 0.65rem !important;
+      gap: 0.5rem !important;
+    }
+
+    body.css-landscape .action-btn {
+      min-height: 34px !important;
+      padding: 0.35rem 0.85rem !important;
+      font-size: 0.75rem !important;
+    }
+
+    body.css-landscape .toggle-seconds-btn {
+      min-height: 34px !important;
+      padding: 0.35rem 0.75rem !important;
+      font-size: 0.72rem !important;
+    }
+
+    body.css-landscape .icon-btn {
+      width: 34px !important;
+      height: 34px !important;
+    }
+
+    body.css-landscape .footer-credit {
+      display: none !important;
+    }
+
+    body.css-landscape .mobile-landscape-btn {
+      top: 0.5rem !important;
+      right: 0.5rem !important;
+      height: 32px !important;
+      font-size: 0.7rem !important;
+      padding: 0 10px !important;
     }
 
     /* Continuous Countdown Alarm Alert Banner */
@@ -1848,11 +1946,17 @@
 </head>
 <body>
 
-  <!-- Floating Rotate Button for Mobile (Quick orientation toggle) -->
-  <button id="btn-mobile-rotate" class="mobile-float-rotate-btn" title="Rotate Screen (Landscape / Portrait)" aria-label="Rotate Orientation">
-    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+  <!-- Mobile Landscape Mode Toggle Button (Mobile Only) -->
+  <button id="btn-mobile-landscape" class="mobile-landscape-btn" title="Landscape Mode" aria-label="Toggle Landscape Mode">
+    <svg id="icon-landscape-orient" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect width="18" height="12" x="3" y="6" rx="2"></rect>
+      <circle cx="18" cy="12" r="0.75" fill="currentColor"></circle>
     </svg>
+    <svg id="icon-portrait-orient" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+      <rect width="12" height="18" x="6" y="3" rx="2"></rect>
+      <circle cx="12" cy="18" r="0.75" fill="currentColor"></circle>
+    </svg>
+    <span id="mobile-landscape-text">Landscape</span>
   </button>
 
   <!-- Top Navigation -->
@@ -2070,9 +2174,6 @@
       </div>
 
       <div class="util-cluster">
-        <button id="btn-rotate" class="icon-btn" title="Rotate Screen / Orientation (Shift+O)" aria-label="Rotate Orientation">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-        </button>
         <button id="btn-zen" class="icon-btn" title="Hide UI / Only Clock (H)" aria-label="Hide Controls and Show Only Clock">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
         </button>
@@ -2442,10 +2543,6 @@
     <div class="shortcut-item">
       <span>Toggle Layout (Stacked / Wide)</span>
       <span class="kbd-shortcut">O</span>
-    </div>
-    <div class="shortcut-item">
-      <span>Rotate Screen (Landscape / Portrait)</span>
-      <span class="kbd-shortcut">Shift+O</span>
     </div>
     <div class="shortcut-item">
       <span>Toggle 12H / 24H Format</span>
@@ -3776,8 +3873,17 @@
 
         tickZoomContainer.addEventListener('pointermove', (e) => {
           if (!isDraggingClock) return;
-          const dx = e.clientX - dragStartX;
-          const dy = e.clientY - dragStartY;
+          let dx = e.clientX - dragStartX;
+          let dy = e.clientY - dragStartY;
+
+          // If in simulated landscape mode (body rotated 90deg clockwise), compensate delta coordinates
+          if (document.body.classList.contains('css-landscape')) {
+            const rotatedDx = dy;
+            const rotatedDy = -dx;
+            dx = rotatedDx;
+            dy = rotatedDy;
+          }
+
           if (Math.hypot(dx, dy) > 4) {
             hasDragged = true;
           }
@@ -3987,34 +4093,49 @@
       btnFullscreen.addEventListener('click', toggleFullscreen);
 
       // ----------------------------------------------------
-      // Screen Orientation Rotation Toggle (Mobile & Desktop)
+      // Mobile Landscape Mode Toggle (Mobile Only)
       // ----------------------------------------------------
-      const btnRotate = document.getElementById('btn-rotate');
-      const btnMobileRotate = document.getElementById('btn-mobile-rotate');
+      const btnMobileLandscape = document.getElementById('btn-mobile-landscape');
+      const mobileLandscapeText = document.getElementById('mobile-landscape-text');
+      const iconLandscapeOrient = document.getElementById('icon-landscape-orient');
+      const iconPortraitOrient = document.getElementById('icon-portrait-orient');
       let isSimulatedLandscape = false;
 
-      async function toggleRotate() {
-        // 1. Try native Screen Orientation API first if supported
+      async function toggleMobileLandscape() {
+        // 1. Try native Screen Orientation API lock if supported (often requires fullscreen on mobile)
         try {
+          if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
+            await document.documentElement.requestFullscreen().catch(() => {});
+          }
           if (screen.orientation && screen.orientation.lock) {
             const currentType = screen.orientation.type || '';
             if (currentType.includes('portrait')) {
-              await screen.orientation.lock('landscape');
+              await screen.orientation.lock('landscape').catch(() => {});
             } else if (currentType.includes('landscape')) {
               await screen.orientation.unlock();
             }
           }
-        } catch (err) {
-          // Native lock not permitted on mobile browser without fullscreen
-        }
+        } catch (_) {}
 
-        // 2. Toggle simulated CSS 90-deg landscape mode (works 100% reliably everywhere)
+        // 2. Toggle landscape mode class
         isSimulatedLandscape = !isSimulatedLandscape;
         document.body.classList.toggle('css-landscape', isSimulatedLandscape);
-        if (btnRotate) btnRotate.classList.toggle('active', isSimulatedLandscape);
-        if (btnMobileRotate) btnMobileRotate.classList.toggle('active', isSimulatedLandscape);
 
-        // Feedback toast
+        // Update button UI & text
+        if (btnMobileLandscape) {
+          btnMobileLandscape.classList.toggle('active', isSimulatedLandscape);
+          btnMobileLandscape.setAttribute('title', isSimulatedLandscape ? 'Return to Portrait Mode' : 'Landscape Mode');
+          btnMobileLandscape.setAttribute('aria-label', isSimulatedLandscape ? 'Return to Portrait Mode' : 'Landscape Mode');
+        }
+        if (mobileLandscapeText) {
+          mobileLandscapeText.textContent = isSimulatedLandscape ? 'Portrait' : 'Landscape';
+        }
+        if (iconLandscapeOrient && iconPortraitOrient) {
+          iconLandscapeOrient.style.display = isSimulatedLandscape ? 'none' : 'block';
+          iconPortraitOrient.style.display = isSimulatedLandscape ? 'block' : 'none';
+        }
+
+        // Notify user via feedback toast
         const toast = document.getElementById('zoom-toast');
         if (toast) {
           toast.textContent = isSimulatedLandscape ? 'Landscape Mode' : 'Portrait Mode';
@@ -4023,16 +4144,37 @@
         }
       }
 
-      if (btnRotate) btnRotate.addEventListener('click', toggleRotate);
-      if (btnMobileRotate) btnMobileRotate.addEventListener('click', toggleRotate);
+      function resetMobileLandscape() {
+        if (!isSimulatedLandscape) return;
+        isSimulatedLandscape = false;
+        document.body.classList.remove('css-landscape');
+        if (btnMobileLandscape) {
+          btnMobileLandscape.classList.remove('active');
+          btnMobileLandscape.setAttribute('title', 'Landscape Mode');
+          btnMobileLandscape.setAttribute('aria-label', 'Landscape Mode');
+        }
+        if (mobileLandscapeText) {
+          mobileLandscapeText.textContent = 'Landscape';
+        }
+        if (iconLandscapeOrient && iconPortraitOrient) {
+          iconLandscapeOrient.style.display = 'block';
+          iconPortraitOrient.style.display = 'none';
+        }
+      }
 
-      // Auto-reset simulated rotation if user physically rotates device to natural landscape
+      if (btnMobileLandscape) {
+        btnMobileLandscape.addEventListener('click', toggleMobileLandscape);
+      }
+
+      // Auto-reset if user physically tilts device horizontally
       window.addEventListener('orientationchange', () => {
-        if (window.innerWidth > window.innerHeight && isSimulatedLandscape) {
-          isSimulatedLandscape = false;
-          document.body.classList.remove('css-landscape');
-          if (btnRotate) btnRotate.classList.remove('active');
-          if (btnMobileRotate) btnMobileRotate.classList.remove('active');
+        if (window.innerWidth > window.innerHeight) {
+          resetMobileLandscape();
+        }
+      });
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 680) {
+          resetMobileLandscape();
         }
       });
 
@@ -4515,13 +4657,9 @@
             toggleFullscreen();
             break;
           case 'o':
-          case 'O': // Toggle layout (Stacked / Wide) or Rotate Screen with Shift
+          case 'O': // Toggle layout (Stacked / Wide)
             e.preventDefault();
-            if (e.shiftKey) {
-              toggleRotate();
-            } else {
-              toggleClockLayout();
-            }
+            toggleClockLayout();
             break;
           case 't':
           case 'T': // Toggle 12H / 24H (Clock mode)
