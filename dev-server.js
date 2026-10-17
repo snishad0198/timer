@@ -21,7 +21,8 @@ const MIME_TYPES = {
   '.woff2': 'font/woff2',
   '.ttf': 'font/ttf',
   '.mp4': 'video/mp4',
-  '.webm': 'video/webm'
+  '.webm': 'video/webm',
+  '.webmanifest': 'application/manifest+json; charset=utf-8'
 };
 
 const SPA_ROUTES = new Set(['/', '/clock', '/timer', '/countdown', '/stopwatch']);
@@ -88,12 +89,18 @@ function createServer() {
         return fs.createReadStream(filePath, { start, end }).pipe(res);
       }
 
-      res.writeHead(200, {
+      const headers = {
         'Content-Type': contentType,
         'Content-Length': stats.size,
         'Accept-Ranges': 'bytes',
         'Cache-Control': 'no-cache, no-store, must-revalidate'
-      });
+      };
+
+      if (safePath.endsWith('sw.js')) {
+        headers['Service-Worker-Allowed'] = '/';
+      }
+
+      res.writeHead(200, headers);
 
       const stream = fs.createReadStream(filePath);
       stream.pipe(res);

@@ -1,7 +1,7 @@
 {
     "name": "time-utility",
     "version": "1.0.0",
-    "description": "Time Utility - Live Clock, Countdown Timer & Stopwatch with mechanical flip animations",
+    "description": "Time Utility - Progressive Web App (PWA) with 3D mechanical flip clock, countdown timer with selectable alarm tones, and precision stopwatch. Runs 100% offline. Modified and enhanced from pqina/flip.",
     "main": "index.html",
     "keywords": [
         "time-utility",
@@ -10,23 +10,34 @@
         "timer",
         "stopwatch",
         "flipclock",
-        "animated"
+        "animated",
+        "pwa",
+        "progressive-web-app",
+        "offline",
+        "pqina-flip"
     ],
     "files": [
         "dist",
         "tick",
         "index.html",
+        "manifest.json",
+        "sw.js",
+        "favicon.ico",
         "dev-server.js",
         "build.js",
         "assets"
     ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/snishad0198/timer.git"
+    },
     "scripts": {
         "dev": "node dev-server.js",
         "start": "node dev-server.js",
         "build": "node build.js"
     },
     "author": {
-        "name": "SNishad",
+        "name": "Shiva Nishad",
         "email": "snishad01985@gmail.com",
         "url": "https://github.com/snishad0198"
     },

@@ -14,6 +14,17 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Time Utility">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <!-- PWA Web App Manifest -->
+  <link rel="manifest" href="./manifest.json">
+
+  <!-- Favicons and Touch Icons -->
+  <link rel="icon" type="image/svg+xml" href="./assets/icons/icon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/icon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/icons/icon-16x16.png">
+  <link rel="shortcut icon" href="./favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/icons/icon-180x180.png">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
@@ -447,6 +458,19 @@
         background: rgba(59, 130, 246, 0.2) !important;
         box-shadow: 0 0 10px rgba(59, 130, 246, 0.35) !important;
       }
+    }
+
+    /* PWA Install Button Highlight */
+    .pwa-install-icon-btn {
+      color: var(--color-accent) !important;
+      border-color: rgba(59, 130, 246, 0.4) !important;
+      background: rgba(59, 130, 246, 0.1) !important;
+    }
+    .pwa-install-icon-btn:hover {
+      background: rgba(59, 130, 246, 0.22) !important;
+      border-color: var(--color-accent) !important;
+      color: #93c5fd !important;
+      box-shadow: 0 0 10px rgba(59, 130, 246, 0.35);
     }
 
     /* Simulated Landscape 90-degree Mode: Full UI remains perfectly visible */
@@ -2139,6 +2163,13 @@
             <circle cx="12" cy="18" r="0.75" fill="currentColor"></circle>
           </svg>
         </button>
+        <button id="btn-pwa-install" class="icon-btn pwa-install-icon-btn" title="Install App (PWA)" aria-label="Install App for Offline Use" style="display:none;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+        </button>
         <button id="btn-zen" class="icon-btn" title="Hide UI / Only Clock (H)" aria-label="Hide Controls and Show Only Clock">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
         </button>
@@ -2362,6 +2393,23 @@
       </div>
     </div>
 
+    <!-- PWA Offline & Install Section -->
+    <div class="setting-section" id="pwa-setting-section">
+      <div class="section-title">App &amp; Offline Installation</div>
+      <div class="setting-row">
+        <span class="setting-label">Progressive Web App</span>
+        <div class="setting-control">
+          <button id="btn-settings-install-pwa" type="button" class="action-btn primary" style="padding:0.4rem 0.85rem; font-size:0.8rem; border-radius:8px; display:inline-flex; align-items:center; gap:0.4rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <span id="lbl-install-status">Install App</span>
+          </button>
+        </div>
+      </div>
+      <div style="font-size:0.75rem; color:var(--color-muted); margin-top:0.4rem; line-height:1.4;">
+        Works 100% offline. Install on your Home Screen or Desktop for instant full-screen access without browser tabs.
+      </div>
+    </div>
+
     <!-- Reset to defaults -->
     <div style="margin-top: 1.5rem; text-align: right;">
       <button id="btn-reset-settings" class="action-btn secondary" style="font-size:0.75rem; padding:0.35rem 0.8rem;">
@@ -2453,6 +2501,27 @@
       <div class="dev-cta">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2" style="flex-shrink:0; margin-top:2px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
         <span>For website development inquiries, collaborations, or project discussions, contact me via email.</span>
+      </div>
+
+      <!-- Open Source Attribution & Lineage -->
+      <div class="repo-lineage-card" style="margin-top:0.85rem; padding:0.85rem; background:rgba(255,255,255,0.03); border:1px solid var(--color-border); border-radius:10px;">
+        <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.35rem;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#a1a1aa" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          <span style="font-size:0.78rem; font-weight:600; color:var(--color-foreground);">Open Source Lineage &amp; Attribution</span>
+        </div>
+        <p style="font-size:0.72rem; color:var(--color-muted); line-height:1.45; margin:0 0 0.6rem 0;">
+          This application is an enhanced, standalone, modified version developed by <strong>Shiva Nishad</strong>, built upon the open-source mechanical flip component library originally created by <strong>Rik Schennink / PQINA</strong> (<a href="https://github.com/pqina/flip" target="_blank" rel="noopener noreferrer" style="color:var(--color-accent); text-decoration:none;">pqina/flip</a>, MIT License).
+        </p>
+        <div style="display:flex; gap:0.45rem; flex-wrap:wrap;">
+          <a href="https://github.com/pqina/flip" target="_blank" rel="noopener noreferrer" class="action-btn secondary" style="font-size:0.7rem; padding:0.25rem 0.6rem; text-decoration:none; display:inline-flex; align-items:center; gap:0.3rem;">
+            <span>Original Repo</span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </a>
+          <a href="https://github.com/snishad0198/timer" target="_blank" rel="noopener noreferrer" class="action-btn secondary" style="font-size:0.7rem; padding:0.25rem 0.6rem; text-decoration:none; display:inline-flex; align-items:center; gap:0.3rem;">
+            <span>This Repository</span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </a>
+        </div>
       </div>
     </div>
 
@@ -3977,7 +4046,6 @@
       // Mobile Landscape Mode Toggle (Mobile Only)
       // ----------------------------------------------------
       const btnMobileLandscape = document.getElementById('btn-mobile-landscape');
-      const mobileLandscapeText = document.getElementById('mobile-landscape-text');
       const iconLandscapeOrient = document.getElementById('icon-landscape-orient');
       const iconPortraitOrient = document.getElementById('icon-portrait-orient');
       let isSimulatedLandscape = false;
@@ -4008,9 +4076,6 @@
           btnMobileLandscape.setAttribute('title', isSimulatedLandscape ? 'Return to Portrait Mode' : 'Landscape Mode');
           btnMobileLandscape.setAttribute('aria-label', isSimulatedLandscape ? 'Return to Portrait Mode' : 'Landscape Mode');
         }
-        if (mobileLandscapeText) {
-          mobileLandscapeText.textContent = isSimulatedLandscape ? 'Portrait' : 'Landscape';
-        }
         if (iconLandscapeOrient && iconPortraitOrient) {
           iconLandscapeOrient.style.display = isSimulatedLandscape ? 'none' : 'block';
           iconPortraitOrient.style.display = isSimulatedLandscape ? 'block' : 'none';
@@ -4033,9 +4098,6 @@
           btnMobileLandscape.classList.remove('active');
           btnMobileLandscape.setAttribute('title', 'Landscape Mode');
           btnMobileLandscape.setAttribute('aria-label', 'Landscape Mode');
-        }
-        if (mobileLandscapeText) {
-          mobileLandscapeText.textContent = 'Landscape';
         }
         if (iconLandscapeOrient && iconPortraitOrient) {
           iconLandscapeOrient.style.display = 'block';
@@ -4593,6 +4655,116 @@
             break;
         }
       });
+
+      // ----------------------------------------------------
+      // PWA Engine: Service Worker & Install Flow
+      // ----------------------------------------------------
+      const btnPwaInstall = document.getElementById('btn-pwa-install');
+      const btnSettingsInstallPwa = document.getElementById('btn-settings-install-pwa');
+      const lblInstallStatus = document.getElementById('lbl-install-status');
+      let deferredInstallPrompt = null;
+
+      const isStandaloneApp = window.matchMedia('(display-mode: standalone)').matches ||
+                              window.navigator.standalone === true ||
+                              document.referrer.includes('android-app://');
+
+      if (isStandaloneApp) {
+        if (lblInstallStatus) lblInstallStatus.textContent = 'App Installed ✓';
+        if (btnSettingsInstallPwa) {
+          btnSettingsInstallPwa.classList.remove('primary');
+          btnSettingsInstallPwa.classList.add('secondary');
+          btnSettingsInstallPwa.disabled = true;
+          btnSettingsInstallPwa.style.opacity = '0.6';
+          btnSettingsInstallPwa.style.cursor = 'default';
+        }
+        if (btnPwaInstall) btnPwaInstall.style.display = 'none';
+      }
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        // Prevent default browser mini-infobar
+        e.preventDefault();
+        deferredInstallPrompt = e;
+
+        if (btnPwaInstall && !isStandaloneApp) {
+          btnPwaInstall.style.display = 'inline-flex';
+        }
+        if (lblInstallStatus) lblInstallStatus.textContent = 'Install App';
+      });
+
+      async function triggerPwaInstall() {
+        if (!deferredInstallPrompt) {
+          const toast = document.getElementById('zoom-toast');
+          if (toast) {
+            toast.textContent = isStandaloneApp ? 'App is already installed!' : 'To install: Tap Browser Menu ⋮ and choose "Install" or "Add to Home Screen"';
+            toast.classList.add('visible');
+            setTimeout(() => toast.classList.remove('visible'), 3500);
+          }
+          return;
+        }
+
+        try {
+          deferredInstallPrompt.prompt();
+          const { outcome } = await deferredInstallPrompt.userChoice;
+          console.log('[PWA] User choice outcome:', outcome);
+          if (outcome === 'accepted') {
+            if (btnPwaInstall) btnPwaInstall.style.display = 'none';
+            if (lblInstallStatus) lblInstallStatus.textContent = 'App Installed ✓';
+          }
+        } catch (err) {
+          console.warn('[PWA] Prompt error:', err);
+        } finally {
+          deferredInstallPrompt = null;
+        }
+      }
+
+      if (btnPwaInstall) {
+        btnPwaInstall.addEventListener('click', triggerPwaInstall);
+      }
+      if (btnSettingsInstallPwa) {
+        btnSettingsInstallPwa.addEventListener('click', triggerPwaInstall);
+      }
+
+      window.addEventListener('appinstalled', () => {
+        console.log('[PWA] Time Utility successfully installed!');
+        if (btnPwaInstall) btnPwaInstall.style.display = 'none';
+        if (lblInstallStatus) lblInstallStatus.textContent = 'App Installed ✓';
+        if (btnSettingsInstallPwa) btnSettingsInstallPwa.disabled = true;
+        deferredInstallPrompt = null;
+        const toast = document.getElementById('zoom-toast');
+        if (toast) {
+          toast.textContent = 'Time Utility installed successfully!';
+          toast.classList.add('visible');
+          setTimeout(() => toast.classList.remove('visible'), 2500);
+        }
+      });
+
+      // Register Service Worker for 100% offline capability
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js', { scope: './' })
+            .then((registration) => {
+              console.log('[PWA] Service Worker registered:', registration.scope);
+
+              registration.addEventListener('updatefound', () => {
+                const newWorker = registration.installing;
+                if (!newWorker) return;
+                newWorker.addEventListener('statechange', () => {
+                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    const toast = document.getElementById('zoom-toast');
+                    if (toast) {
+                      toast.textContent = 'Update available! Refresh to load new version.';
+                      toast.classList.add('visible');
+                      setTimeout(() => toast.classList.remove('visible'), 4000);
+                    }
+                  }
+                });
+              });
+            })
+            .catch((err) => {
+              console.warn('[PWA] Service Worker registration failed:', err);
+            });
+        });
+      }
 
       // Initial layout, position and visual setup
       updateClockLayout();
